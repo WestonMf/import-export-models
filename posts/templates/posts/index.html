@@ -1,0 +1,11 @@
+{% extends "base.html" %} {% block title %} Home {% endblock title %}
+<!---->{% block content %}
+<div class="flex justify-between">
+  <a href="{% url 'export' 'csv' %}" class="text-teal-500 bg-black p-2 rounded"
+    >Export to csv
+  </a>
+  <a href="{% url 'export' 'xls' %}" class="text-teal-500 bg-black p-2 rounded"
+    >Export to xls
+  </a>
+</div>
+{% endblock content %}
