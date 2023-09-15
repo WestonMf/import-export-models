@@ -1,0 +1,5 @@
+{% extends 'base.html' %} {% load unicorn %}
+<!--Block content -->
+{% block content %} {% unicorn 'cart' user=request.user.pk books=books %}
+<!-- close the block content -->
+{% endblock content %}

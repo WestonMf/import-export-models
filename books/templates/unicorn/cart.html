@@ -1,0 +1,54 @@
+<div>
+  <div class="grid grid-cols-3 gap-4 m-12">
+    <div class="col-span-2" id="books">
+      <h3 class="text-3xl mb-3">Available books</h3>
+      {% for book in books %}
+      <div class="max-w-sm rounded overflow-hidden shadow-lg my-3">
+        <img
+          class="w-full"
+          src="{{book.cover_image.url}}"
+          alt="Sunset in the mountains"
+        />
+        <div class="px-6 py-4">
+          <div class="font-bold text-xl mb-2">{{ book.title}}</div>
+          <p class="text-gray-700 text-base">{{ book.description}}</p>
+        </div>
+        <div class="px-6 pt-4 pb-2">
+          <button
+            unicorn:click="add_book({{book.id}})"
+            class="bg-teal-700 text-white p-2 rounded"
+          >
+            Add to cart
+          </button>
+        </div>
+        <a href="{% url 'books:make_payment' book.id %}">Pay</a>
+      </div>
+      {% endfor %}
+    </div>
+    <div>
+      <h3 class="text-2xl text-center">Cart</h3>
+      <div>
+        {% if user_books %} {% for book in user_books %}
+        <div>
+          <span
+            >{{book.quantity}} * {{ book.book.title }} -
+            <span>{{ book.total_price}}</span></span
+          ><i
+            unicorn:click="delete_book({{book.id}})"
+            class="fa-solid fa-trash text-red-600"
+          ></i>
+        </div>
+        <!---->{% endfor %}
+        <div class="mt-2 border-t-2">
+          <div class="mt-2 flex justify-between">
+            <p>Total Price</p>
+            <p>{{total }}</p>
+          </div>
+        </div>
+        {% else %}
+        <span>There are no books in this cart</span>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>

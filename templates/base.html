@@ -1,13 +1,23 @@
+{% load unicorn %}
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <title>{% block title %} {% endblock title %}</title>
+    {% unicorn_scripts %}
   </head>
   <body>
-    <div class="mt-5 max-w-md mx-auto shadow p-10 rounded">
+    {% csrf_token %}
+    <div class="mt-5 max-w-[1024px] mx-auto shadow p-10 rounded">
       {% block content %} {% endblock content %}
     </div>
   </body>
